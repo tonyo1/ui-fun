@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "YCa2206jlh9+pghDRr7Ea1AP2YwbghcKWKZ8/vvgeNvTJxJLyylA0L8fNdu4eTIdyiH25fcqISoVNqQrCI5vzw==",
+  "success": true,
+  "projectFilePath": "/Users/tony/_dev/specProj/ui-fun/monkey.api/monkey.api.csproj",
+  "expectedPackageFiles": [
+    "/Users/tony/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/tony/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/tony/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/tony/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/tony/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/tony/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
