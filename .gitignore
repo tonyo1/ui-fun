@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+monkey.api/bin/Debug/net6.0/App.config
+
+monkey.api/App.config

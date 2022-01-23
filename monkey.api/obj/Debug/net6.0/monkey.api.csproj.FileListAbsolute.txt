@@ -25,3 +25,6 @@
 /Users/tony/_dev/specProj/ui-fun/monkey.api/obj/Debug/net6.0/ref/monkey.api.dll
 /Users/tony/_dev/specProj/ui-fun/monkey.api/obj/Debug/net6.0/monkey.api.pdb
 /Users/tony/_dev/specProj/ui-fun/monkey.api/obj/Debug/net6.0/monkey.api.genruntimeconfig.cache
+/Users/tony/_dev/specProj/ui-fun/monkey.api/bin/Debug/net6.0/SimpleInjector.dll
+/Users/tony/_dev/specProj/ui-fun/monkey.api/bin/Debug/net6.0/App.config
+/Users/tony/_dev/specProj/ui-fun/monkey.api/bin/Debug/net6.0/monkey.api.dll.config
