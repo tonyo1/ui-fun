@@ -38,9 +38,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "SimpleInjector": {
+            "Microsoft.Azure.Cosmos": {
               "target": "Package",
-              "version": "[5.3.2, )"
+              "version": "[3.21.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Cosmos": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

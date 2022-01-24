@@ -1,18 +1,23 @@
+using Microsoft.EntityFrameworkCore;
 using monkey.api.Models;
+using monkey.api.Repsoitories;
+
 namespace monkey.api.Services
 {
     public class AppUserService
-    { 
+    {
+        public AppUserService()
+        {
+
+        }
+
+
         public IList<AppUser> GetAppUsers()
         {
-            return Enumerable.Range(1, 5).Select(index => new AppUser
+            using (var context = new AppUsersStore(new DbContextOptions<CosmosBase>()))
             {
-                Id = Guid.NewGuid(),
-                UserName = Guid.NewGuid().ToString(),
-                Email = "INeedEmail"
-            })
-            .ToArray();
+                return context.AppUsers.ToList();
+            }
         }
     }
 }
- 

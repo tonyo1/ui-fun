@@ -1,4 +1,5 @@
 namespace monkey.api.Models;
+using Newtonsoft.Json;
 
 public class WeatherForecast
 {
@@ -13,9 +14,12 @@ public class WeatherForecast
 
 public class AppUser
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-
-    public string UserName { get; set; } = string.Empty;
-
-    public string Email { get; set; } = string.Empty;   
+ 
+    [JsonProperty(PropertyName = "id")]
+    public int Id { get; set; }  
+ 
+    public string UserName { get; set; } 
+    public string Email { get; set; }   
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 }

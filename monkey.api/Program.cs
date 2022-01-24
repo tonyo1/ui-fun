@@ -1,11 +1,11 @@
 using monkey.api.Services;
+using monkey.api.Repsoitories;
 
 var builder = WebApplication.CreateBuilder(args);
  
 // Add services to the container.
-builder.Services.AddSingleton<AppUserService>(new AppUserService());
-
-
+builder.Services.AddScoped<AppUserService, AppUserService>();
+ 
 builder.Services.AddControllers();
 builder.Services.AddLocalization();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
