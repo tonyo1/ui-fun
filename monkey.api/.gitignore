@@ -457,3 +457,4 @@ $RECYCLE.BIN/
 *.config
 obj/   
 
+appsettings.Development.json
