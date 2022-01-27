@@ -106,3 +106,10 @@ dist
 monkey.api/bin/Debug/net6.0/App.config
 
 monkey.api/App.config
+monkey.sql/sqlmonkey/bin/
+monkey.sql/sqlmonkey/obj/
+monkey.sql/sqlmonkey/*.json
+monkey.api/obj/ 
+monkey.api/bin/ 
+monkey.api/obj/monkey.api.csproj.nuget.dgspec.json
+monkey.api/obj/monkey.api.csproj.nuget.g.props
