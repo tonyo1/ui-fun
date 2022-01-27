@@ -6,18 +6,20 @@ namespace monkey.api.Services
 {
     public class AppUserService
     {
-        public AppUserService()
+        private readonly MyContext _context;
+
+        public AppUserService(MyContext context)
         {
-
+            _context = context;
         }
-
-
+ 
         public IList<AppUser> GetAppUsers()
         {
-            using (var context = new AppUsersStore(new DbContextOptions<CosmosBase>()))
-            {
-                return context.AppUsers.ToList();
-            }
+             
+                return _context
+                .AppUsers
+                .ToList();
+            
         }
     }
 }
