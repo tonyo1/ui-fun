@@ -4,11 +4,11 @@ using monkey.api.Repsoitories;
 
 namespace monkey.api.Services
 {
-    public class AppUserService
+    public class AppUserServicexxx
     {
         private readonly MyContext _context;
 
-        public AppUserService(MyContext context)
+        public AppUserServicexxx(MyContext context)
         {
             _context = context;
         }
