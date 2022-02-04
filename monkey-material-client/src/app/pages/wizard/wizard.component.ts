@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 
- 
+
 
 @Component({
   selector: 'app-wizard',
@@ -16,39 +16,46 @@ import {
   styleUrls: ['./wizard.component.css'],
 })
 export class WizardComponent {
-  form: FormGroup = this.init();
+  firstFormGroup: FormGroup = this.init();
+
+  secondFormGroup!: FormGroup;
+  isEditable = true;
+
   submitted = false;
   //var isEditable: boolean = false;
-  
+
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit() { 
-     
+  ngOnInit() {
+
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
+    return this.firstFormGroup.controls;
   }
 
   onSubmit(): void {
     this.submitted = true;
 
-    if (this.form.invalid) {
+    if (this.firstFormGroup.invalid) {
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+    console.log(JSON.stringify(this.firstFormGroup.value, null, 2));
   }
 
   onReset(): void {
     this.submitted = false;
-    this.form.reset();
+    this.firstFormGroup.reset();
   }
-  
+
   init(){
     return this.formBuilder.group(
       {
-        fullname: ['', Validators.required],
+        firstName: ['', Validators.required],
         username: [
           '',
           [

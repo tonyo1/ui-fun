@@ -20,7 +20,7 @@ public class AppUserService : IAppUserService
     {
         new AppUser { UserId = 1, FirstName = "Test", LastName = "User", UserName = "test" }
         ,new AppUser { UserId = 2, FirstName = "Test", LastName = "User", UserName = "string" }
-        
+
     };
 
     private readonly IConfiguration _appSettings;
@@ -32,15 +32,12 @@ public class AppUserService : IAppUserService
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
-        var user = _users.SingleOrDefault(x => x.UserName == model.UserName && 1==1);
+        var user = _users.SingleOrDefault(x => x.UserName == model.UserName && model.Password == model.Password);
 
         // return null if user not found
         if (user == null) return null;
-
-        // authentication successful so generate jwt token
-        var token = generateJwtToken(user);
-
-        return new AuthenticateResponse(user, token);
+ 
+        return new AuthenticateResponse(user);
     }
 
     public IEnumerable<AppUser> GetAll()
@@ -55,7 +52,7 @@ public class AppUserService : IAppUserService
 
     // helper methods
 
-    private string generateJwtToken(AppUser user)
+    private string GenerateJwtToken(AppUser user)
     {
         // generate token that is valid for 1 minute
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -63,11 +60,24 @@ public class AppUserService : IAppUserService
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new[] { new Claim("userid", user.UserId.ToString()) }),
+            Subject = CreateClaimIdentity(user),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
-    }   
+    }
+
+    private ClaimsIdentity CreateClaimIdentity(AppUser user)
+    {
+        var newID = new ClaimsIdentity(new[]
+        {
+            new Claim(ClaimTypes.Name, user.UserName + string.Empty),
+            new Claim("userid", user.UserId.ToString()),
+            new Claim(ClaimTypes.Email, user.Email + string.Empty),
+            new Claim(ClaimTypes.Role, "user") // dynamic role assignment
+
+        });
+        return newID;
+    }
 }

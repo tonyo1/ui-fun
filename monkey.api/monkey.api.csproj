@@ -25,6 +25,7 @@
   
   <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
   
+  <PackageReference Include="System.Net.Security" Version="4.3.2" />
   
   <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
    </ItemGroup>
