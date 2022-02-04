@@ -11,15 +11,13 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using monkey.api.Helpers;
 
+//using Cosmos.ModelBuilding;
 
-public class MonkeyControllerBase : ControllerBase
-{
 
-}
 [ApiController]
 [Route("[controller]")]
 [Authorize]
-public class AppUsersController : MonkeyControllerBase
+public class AppUsersController : ControllerBase
 {
     private readonly ILogger<AppUser> _logger;
     private readonly AppSettings _appSettings;
@@ -45,29 +43,26 @@ public class AppUsersController : MonkeyControllerBase
     }
 
     [HttpPut(Name = "SetApp")]
-    public AppUser Set()
+    public IEnumerable<AppUser> Set()
     {
-        var user = (AppUser)HttpContext.Items["User"];
-        return user;//new List<AppUser>(){ new AppUser() { LastName = "That worked" }};// _appUserService.GetAppUsers();
+
+        return new List<AppUser>();// _appUserService.GetAppUsers();
     }
 
 
     [HttpPost(Name = "Login")]
     [AllowAnonymous]
     public object Login([FromBody] AuthenticateRequest info)
-    {
+    { 
 
-        var response = _appUserService.Authenticate(info); 
-        
-        return Ok(new
-        {
-            id_token =  JwtMiddleware
-                .GenerateJwtToken(response, _appSettings, out DateTime expires),
-            expires_at = expires,
-            appUser = (AppUser)response
-        });
-
- 
+        var  response = _appUserService.Authenticate(info);
+        //setTokenCookie(response);
+       
+         this.HttpContext.Items["User"] = (AppUser)response;
+         
+        return Ok(response);
+      //  var user = Authenticate(info);
+      //  return new { data = info };
 
     }
 

@@ -19,8 +19,7 @@ public class AppSettings
         this.JWTValidAudience = _configuration.GetValue<string>("JWTValidAudience");
         this.JWTRequireExpirationTime = _configuration.GetValue<bool>("JWTRequireExpirationTime");
         this.JWTValidateLifetime = _configuration.GetValue<bool>("JWTValidateLifetime");
-        this.JWTValidIssuer = _configuration.GetValue<string>("JWTValidIssuer");
-       
+        
 
     }
     public string ConnectionString { get; set; }  
@@ -46,26 +45,26 @@ public class AppUser
 {
     [Key]
     public int UserId { get; set; }
- 
-        public string UserName { get; set; }
+
+    public string UserName { get; set; }
     public string Email { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
 
- 
-
+     public string Token { get; set; }
 }
 
 
 public class AuthenticateResponse : AppUser
 {
-    public AuthenticateResponse(AppUser user)
+    public AuthenticateResponse(AppUser user, string token)
     {
         UserId = user.UserId;
         FirstName = user.FirstName;
         LastName = user.LastName;
-        UserName = user.UserName; 
-    } 
+        UserName = user.UserName;
+        Token = token;
+    }
 }
 
 public class AuthenticateRequest

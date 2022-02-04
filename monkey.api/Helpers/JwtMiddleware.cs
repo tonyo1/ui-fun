@@ -1,58 +1,16 @@
 
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using monkey.api.Models;
 using monkey.api.Services;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace monkey.api;
+namespace monkey.api.JwtMillware;
 public class JwtMiddleware
 {
-    public static string GenerateJwtToken(AppUser user, AppSettings _app, out DateTime expires)
-    {
-        // generate token that is valid for 1 minute
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_app.JWTSecret.ToString());
-
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = CeateIdentityClaims(user),
-            Expires = DateTime.UtcNow.AddHours(1),
-            Issuer = _app.JWTValidIssuer,
-            IssuedAt = DateTime.UtcNow, 
-            Audience = _app.JWTValidAudience,
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-         
-         var token = tokenHandler.CreateToken(tokenDescriptor);
-         expires = DateTime.UtcNow.AddHours(1);
-        return tokenHandler.WriteToken(token);
-    }
-    public static ClaimsIdentity CeateIdentityClaims(AppUser user)
-    {
-        var newID = new ClaimsIdentity(new[]
-        {
-            new Claim(ClaimTypes.Name, user.UserName + string.Empty),
-            new Claim("userid", user.UserId.ToString()),
-            new Claim(ClaimTypes.Email, user.Email + string.Empty),
-            new Claim(ClaimTypes.Role, "user") ,// dynamic role assignment
-            new Claim(ClaimTypes.Role, "role2") // dynamic role assignment
-
-        });
-        return newID;
-    }
-    public static AppUser GetAppUserFromToken(JwtSecurityToken token)
-    {
-        return new AppUser()
-        {
-            UserId = int.Parse(token.Claims.First(x => x.Type == "userid").Value),
-            UserName = token.Claims.First(x => x.Type == "name").Value,
-            Email = token.Claims.First(x => x.Type == "email").Value,
-            LastName = token.Claims.First(x => x.Type == "role").Value
-        };
-    }
-
 
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
@@ -90,12 +48,14 @@ public class JwtMiddleware
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken)validatedToken;
+            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "userid").Value);
+
             // attach user to context on successful jwt validation
-            context.Items["User"] = GetAppUserFromToken(jwtToken);
+            context.Items["User"] = userService.GetById(userId);
         }
         catch (Exception ex)
         {
-            int i = 1;
+            int  i = 0;
             // do nothing if jwt validation fails
             // user is not attached to context so request won't have access to secure routes
         }
@@ -104,5 +64,6 @@ public class JwtMiddleware
 
 public class hhhh
 {
-
+    
 }
+ 
