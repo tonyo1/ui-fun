@@ -6,35 +6,37 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { WizardComponent } from './pages/wizard/wizard.component';
-import {MatToolbarModule} from '@angular/material/toolbar'; 
- 
+import {MatToolbarModule} from '@angular/material/toolbar';
+
  import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
- 
+
 import {MatStepperModule} from '@angular/material/stepper';
 
 import {ReactiveFormsModule} from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './pages/login/login.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MainNavComponent } from './components/main-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     WizardComponent,
-    LoginComponent
+    LoginComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
-    MatToolbarModule, 
+    BrowserAnimationsModule,
+    MatToolbarModule,
     MatIconModule,
     MatStepperModule,
     ReactiveFormsModule,
@@ -42,8 +44,9 @@ import { LoginComponent } from './pages/login/login.component';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatCardModule
- 
+    MatCardModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

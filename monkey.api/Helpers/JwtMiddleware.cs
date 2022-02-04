@@ -20,26 +20,28 @@ public class JwtMiddleware
             Subject = CeateIdentityClaims(user),
             Expires = DateTime.UtcNow.AddHours(1),
             Issuer = _app.JWTValidIssuer,
-            IssuedAt = DateTime.UtcNow, 
+            IssuedAt = DateTime.UtcNow,
             Audience = _app.JWTValidAudience,
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
-         
-         var token = tokenHandler.CreateToken(tokenDescriptor);
-         expires = DateTime.UtcNow.AddHours(1);
+
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        expires = DateTime.UtcNow.AddHours(1);
         return tokenHandler.WriteToken(token);
     }
     public static ClaimsIdentity CeateIdentityClaims(AppUser user)
     {
         var newID = new ClaimsIdentity(new[]
         {
-            new Claim(ClaimTypes.Name, user.UserName + string.Empty),
+            new Claim("username", user.UserName + string.Empty),
             new Claim("userid", user.UserId.ToString()),
             new Claim(ClaimTypes.Email, user.Email + string.Empty),
-            new Claim(ClaimTypes.Role, "user") ,// dynamic role assignment
-            new Claim(ClaimTypes.Role, "role2") // dynamic role assignment
-
+           
         });
+        foreach (var role in user.Roles)
+        {
+            newID.AddClaim(new Claim(ClaimTypes.Role, role));
+        } 
         return newID;
     }
     public static AppUser GetAppUserFromToken(JwtSecurityToken token)

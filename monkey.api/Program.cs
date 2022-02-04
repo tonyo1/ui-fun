@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 using monkey.api;
 
 var _builder = WebApplication.CreateBuilder(args);
-
+ 
 _builder.Logging.ClearProviders();
 _builder.Logging.AddConsole();
 
@@ -52,7 +52,27 @@ var _services = _builder.Services;
                     }
                 });
      });
+       _services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200",
+                                            "http://localhost:7296");
+                    });
 
+                    options.AddPolicy("Policy1",
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:4200",
+                                            "http://localhost:7296")
+                                .AllowAnyMethod()
+                                .AllowAnyHeader();
+                        });
+            });
+
+
+  
     _services.AddDbContext<MyContext>(ServiceLifetime.Scoped);
 
     //_services.AddScoped<IUserService, UserService>();
@@ -83,11 +103,12 @@ if (_environment.IsDevelopment())
 
 {
     app.UseMiddleware<JwtMiddleware>();
-
-
+ 
+  
     app.UseRouting();
-
-    app.MapControllers();
+    app.UseCors();
+    app.MapControllers()
+        .RequireCors("Policy1");
 
     app.UseEndpoints(endpoints =>
         {
@@ -96,7 +117,7 @@ if (_environment.IsDevelopment())
                 pattern: "{controller=Users}/{action=Index}/{id?}");
         });
 
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
 
     app.UseAuthorization();
 

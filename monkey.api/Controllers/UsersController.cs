@@ -8,6 +8,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.IdentityModel.Tokens;
 using monkey.api.Helpers;
 
@@ -16,6 +17,7 @@ public class MonkeyControllerBase : ControllerBase
 {
 
 }
+[EnableCors("MyPolicy")]
 [ApiController]
 [Route("[controller]")]
 [Authorize]

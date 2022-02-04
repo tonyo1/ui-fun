@@ -1,6 +1,6 @@
 export class AppUser {
-  id: number = 0;
-  firstName: string = '';
+  userid: number = 0;
+  username: string = '';
   lastName: string= '';
   email: string= '';
   roles: string[] = [];
