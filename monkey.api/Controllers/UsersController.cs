@@ -61,13 +61,13 @@ public class AppUsersController : MonkeyControllerBase
 
         var response = _appUserService.Authenticate(info); 
         
-        return Ok(new
-        {
-            id_token =  JwtMiddleware
-                .GenerateJwtToken(response, _appSettings, out DateTime expires),
-            expires_at = expires,
-            appUser = (AppUser)response
-        });
+            return Ok(new
+            {
+                id_token =  JwtMiddleware
+                    .GenerateJwtToken(response, _appSettings, out DateTime expires),
+                expires_at = expires,
+                appUser = (AppUser)response
+            });
 
  
 

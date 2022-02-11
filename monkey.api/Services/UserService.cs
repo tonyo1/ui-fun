@@ -18,7 +18,7 @@ public class AppUserService : IAppUserService
     // users hardcoded for simplicity, store in a db with hashed passwords in production applications
     private List<AppUser> _users = new List<AppUser>
     {
-        new AppUser { UserId = 1, FirstName = "Test", LastName = "User", UserName = "test", Email = "test" }
+        new AppUser { UserId = 1, FirstName = "Needs a f name", LastName = "User", UserName = "test", Email = "test" }
         ,new AppUser { UserId = 2, FirstName = "Test", LastName = "User", UserName = "string",  Email = "test"}
 
     };

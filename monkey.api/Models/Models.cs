@@ -2,6 +2,7 @@ namespace monkey.api.Models;
 
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+ 
 
 
 public class AppSettings
@@ -20,17 +21,17 @@ public class AppSettings
         this.JWTRequireExpirationTime = _configuration.GetValue<bool>("JWTRequireExpirationTime");
         this.JWTValidateLifetime = _configuration.GetValue<bool>("JWTValidateLifetime");
         this.JWTValidIssuer = _configuration.GetValue<string>("JWTValidIssuer");
-       
+
 
     }
-    public string ConnectionString { get; set; }  
+    public string ConnectionString { get; set; }
     public string ConfigName { get; set; }
- 
+
     public object Logging { get; set; }
     public string JWTSecret { get; set; }
     public string JWTValidateIssuerSigningKey { get; set; }
     public bool JWTValidateIssuer { get; set; }
-    public string JWTValidIssuer { get; set; } 
+    public string JWTValidIssuer { get; set; }
     public bool JWTValidateAudience { get; set; }
 
     public string JWTValidAudience { get; set; }
@@ -44,13 +45,19 @@ public class AppSettings
 
 public class AppUser
 {
+    [JsonProperty("userId")]
     [Key]
-    public int UserId { get; set; }  
+    public int UserId { get; set; }
+    [JsonProperty("username")]
     public string UserName { get; set; }
+    [JsonProperty("email")]
     public string Email { get; set; }
+    [JsonProperty("firstName")]
     public string FirstName { get; set; }
-    public string LastName { get; set; } 
+    [JsonProperty("lastName")]
+    public string LastName { get; set; }
 
+    [JsonProperty("roles")]
     public List<string> Roles { get; set; } = new List<string>();
 }
 
@@ -62,8 +69,8 @@ public class AuthenticateResponse : AppUser
         UserId = user.UserId;
         FirstName = user.FirstName;
         LastName = user.LastName;
-        UserName = user.UserName; 
-    } 
+        UserName = user.UserName;
+    }
 }
 
 public class AuthenticateRequest

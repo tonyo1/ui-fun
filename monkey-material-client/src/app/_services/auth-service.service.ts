@@ -22,7 +22,9 @@ export class AuthService {
           this.setSession({
             expiresIn: response['expires_at'],
             idToken: response['id_token'],
-          });
+            appUser: response['appUser'],
+          }
+          );
         },
         (error) => {
           //Error callback
@@ -36,17 +38,21 @@ export class AuthService {
   private setSession(authResult: {
     expiresIn: moment.DurationInputArg1;
     idToken: string;
+    appUser: AppUser;
   }) {
-    this.isLoginSubject.next(true);
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('appUser', JSON.stringify(authResult.appUser));
+    this.isLoginSubject.next(true);
+
   }
 
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('appUser');
     this.isLoginSubject.next(false);
   }
 
@@ -66,5 +72,10 @@ export class AuthService {
     const expiration = localStorage.getItem('expires_at') + '';
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
+  }
+
+  getAppUser(): AppUser {
+    const appUser = localStorage.getItem('appUser')?.valueOf() + '';
+    return JSON.parse(appUser);
   }
 }

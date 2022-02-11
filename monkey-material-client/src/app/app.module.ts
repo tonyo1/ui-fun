@@ -24,6 +24,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainNavComponent } from './components/main-nav.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,8 +49,11 @@ import { MainNavComponent } from './components/main-nav.component';
     MatInputModule,
     MatGridListModule,
     MatCardModule,
-    HttpClientModule
-
+    HttpClientModule,
+    FlexLayoutModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

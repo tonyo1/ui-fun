@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { __asyncValues } from 'tslib';
+import { AuthService } from '../_services/auth-service.service';
 
 
 @Component({
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
-
-  constructor() { }
+  isLoggedIn: boolean = false;;
+  constructor(private _authService: AuthService)  {
+    this._authService
+      .isLoggedIn()
+      .subscribe((res) => {this.isLoggedIn=res;});
+   }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,58 @@
-<p>login works!</p>
-<a mat-button (click)="myFunc()"> Login </a>
-<button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
-  Login-----he good of all
+
+
+<mat-card *ngIf="isLoggedIn">
+  <mat-card-title>User Info</mat-card-title>
+  <mat-card-content>
+    <div>
+      <div>{{ user.firstName }}</div>
+      <div>{{ _authService.getExpiration() }}</div>
+    </div>
+    <button
+  (click)="logout()"
+  mat-mini-fab
+  color="warn"
+  aria-label="Example icon button with a filter list icon"
+>
+  LogOut
 </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <p>
+        <mat-form-field   appearance="legacy" >
+          <input
+            type="text"
+            matInput
+            placeholder="Username"
+            formControlName="username"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field  appearance="legacy">
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </p>
+
+      <p *ngIf="error" class="error">
+        {{ error }}
+      </p>
+
+      <div class="button">
+        <button type="submit" mat-button>Login</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+
