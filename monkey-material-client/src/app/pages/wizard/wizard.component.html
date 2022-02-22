@@ -2,147 +2,93 @@
 
 <mat-card fxLayoutAlign="center center">
   <mat-stepper linear #stepper>
-    <mat-step
-      [stepControl]="firstFormGroup"
-      [editable]="isEditable"
-      class="register-form"
-    >
-      <div [formGroup]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-          <mat-form-field appearance="legacy">
-            <mat-label>Full Name</mat-label>
-            <input
-              matInput
-              type="text"
-              placeholder="Enter your full name"
-              formControlName="fullname"
-              [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }"
-            />
-            <div
-              *ngIf="submitted && f.fullname.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.fullname.errors.required">Fullname is required</div>
-            </div>
-          </mat-form-field>
+    <mat-step [stepControl]="form1" [editable]="true" class="register-form">
+      <div [formGroup]="form1">
+        <mat-form-field appearance="legacy">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Enter your full name"
+            formControlName="prop1"
+            [ngClass]="{ 'is-invalid': '' }"
+          />
+        </mat-form-field>
 
-          <mat-form-field appearance="legacy">
-            <mat-label>Username</mat-label>
-            <input
-              matInput
-              placeholder="Enter your username"
-              type="text"
-              formControlName="username"
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-            />
-            <div
-              *ngIf="submitted && f.username.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.username.errors.required">Username is required</div>
-              <div *ngIf="f.username.errors.minlength">
-                Username must be at least 6 characters
-              </div>
-              <div *ngIf="f.username.errors.maxlength">
-                Username must not exceed 20 characters
-              </div>
-            </div>
-          </mat-form-field>
-
-          <mat-form-field appearance="legacy">
-            <mat-label>Email</mat-label>
-            <input
-              matInput
-              placeholder="Enter your email"
-              type="text"
-              formControlName="firstName"
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-            />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
-              <div *ngIf="f.email.errors.email">Email is invalid</div>
-            </div>
-          </mat-form-field>
-
-          <mat-form-field appearance="legacy">
-            <mat-label>Password</mat-label>
-            <input
-              matInput
-              placeholder="Enter your password"
-              type="password"
-              formControlName="password"
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-            />
-            <div
-              *ngIf="submitted && f.password.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">
-                Password must be at least 6 characters
-              </div>
-              <div *ngIf="f.password.errors.maxlength">
-                Username must not exceed 40 characters
-              </div>
-            </div>
-          </mat-form-field>
-
-          <mat-form-field appearance="legacy">
-            <mat-label>Confirm Password</mat-label>
-            <input
-              matInput
-              placeholder="Enter your password again"
-              type="password"
-              formControlName="confirmPassword"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid': submitted && f.confirmPassword.errors
-              }"
-            />
-            <div
-              *ngIf="submitted && f.confirmPassword.errors"
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.confirmPassword.errors.required">
-                Confirm Password is required
-              </div>
-              <div *ngIf="f.confirmPassword.errors.matching">
-                Confirm Password does not match
-              </div>
-            </div>
-          </mat-form-field>
-        </form>
+        <mat-form-field appearance="legacy">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Enter your username"
+            type="text"
+            formControlName="prop2"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': '' }"
+          />
+        </mat-form-field>
       </div>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+    <mat-step [stepControl]="form2" [editable]="true">
+      <div [formGroup]="form2">
+        <mat-form-field appearance="legacy">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Enter your full name"
+            formControlName="prop1"
+            [ngClass]="{ 'is-invalid': '' }"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Enter your username"
+            type="text"
+            formControlName="prop2"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': '' }"
+          />
+        </mat-form-field>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="form3"  [editable]="true">
+      <div [formGroup]="form1">
       <mat-form-field appearance="legacy">
+        <mat-label>Full Name</mat-label>
         <input
           matInput
-          placeholder="???"
           type="text"
-          formControlName="firstName"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+          placeholder="Enter your full name"
+          formControlName="prop1"
+          [ngClass]="{ 'is-invalid': '' }"
         />
-        <button type="submit" class="btn btn-primary">Register</button>
-        <button
-          type="button"
-          (click)="onReset()"
-          class="btn btn-warning float-right"
-        >
-          Reset
-        </button>
       </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Enter your username"
+          type="text"
+          formControlName="prop2"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': '' }"
+        />
+      </mat-form-field>
+      </div>
     </mat-step>
   </mat-stepper>
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>{{ firstFormGroup.value | json }}</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-  </mat-grid-list>
+
 </mat-card>
-<br />
+<mat-card><mat-card-title>debug</mat-card-title>
+    <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>{{ form1.value | json }}</mat-grid-tile>
+    <mat-grid-tile>{{ form2.value | json }}</mat-grid-tile>
+    <mat-grid-tile>{{ form3.value | json }}</mat-grid-tile>
+    <mat-grid-tile>nada</mat-grid-tile>
+  </mat-grid-list>
+  </mat-card>
+

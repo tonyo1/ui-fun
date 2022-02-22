@@ -27,29 +27,36 @@
       </div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
         <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+          <li *ngIf="isLoggedIn">
+            <a routerLink="/wizard">
+              <mat-icon class="icon">dashboard</mat-icon>
+              <span class="label"> Wizard</span>
+            </a>
+          </li>
           <li>
             <a routerLink="/">
               <mat-icon class="icon">home</mat-icon>
               <span class="label"> Home</span>
             </a>
           </li>
-          <li>
-            <a routerLink="/wizard">
-              <mat-icon class="icon">dashboard</mat-icon>
-              <span class="label"> Wizard</span>
+
+
+          <li  *ngIf="isLoggedIn">
+            <a>
+              <mat-icon class="icon">logout</mat-icon>
+              <span class="label" (click)="logOut()"> LogOut</span>
             </a>
           </li>
-
-          <li>
+          <li  *ngIf="!isLoggedIn">
             <a routerLink="/login">
               <mat-icon class="icon">input</mat-icon>
-              <span class="label">Login</span>
+              <span class="label"> Login</span>
             </a>
           </li>
         </ul>
       </div>
     </mat-toolbar>
-    <main>
+    <main class="main">
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>
