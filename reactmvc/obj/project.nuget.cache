@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1tMjRvoMIFokTuZPkev82Y0Mu7t3q2NlDTYXQelaJ7rzHPtGtpV0x72q4qq+ZDk8IUXfr+7p31EPxx6ITxIbUQ==",
+  "dgSpecHash": "VkMnLt0lPo96Tf/IBED0tqW7KkCtmHqReKlyCrSOZ4RqHPMeEPvJvli1240okMlCvFhEoev5DLh3COqwsqupZA==",
   "success": true,
-  "projectFilePath": "/Users/tony/_dev/reactmvc/reactmvc.csproj",
+  "projectFilePath": "/Users/tony/_dev/specProj/ui-fun/reactmvc/reactmvc.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

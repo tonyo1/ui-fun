@@ -4,16 +4,20 @@ import { render } from "react-dom";
 
 const AboutForm = () => {
     const [validated, setValidated] =  React.useState<boolean>(false);
- 
-    const handleSubmit = (event) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
+   
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
+      e.preventDefault(); 
+      if (validated === false) {
+        e.preventDefault();
+        
       }
   
       setValidated(true);
-    };
+      // or you can send to backend
+  };
+
+
+ 
   
     return (
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
