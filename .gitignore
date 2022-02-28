@@ -115,3 +115,6 @@ monkey.api/obj/monkey.api.csproj.nuget.dgspec.json
 monkey.api/obj/monkey.api.csproj.nuget.g.props
 monkey.api/appsettings.Development.json
 monkey.api/appsettings.Development.json
+
+reactmvc/obj
+reactmvc/bin

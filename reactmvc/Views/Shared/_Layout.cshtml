@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - reactmvc</title>
-
-    <link href="/scripts/static/css/main.b01b3ba7.css" rel="stylesheet" />
+    @RenderSection("head", false)
+   
 </head>
 
 <body>
@@ -14,10 +14,9 @@
         mvc
     </header>
 
-    <div id="root"></div>
+  
     @RenderBody()
-    <script defer="defer" src="/scripts/static/js/main.4f6225f8.js"></script>
-
+   
 </body>
 
 </html>

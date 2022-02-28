@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4ipA1NUYz+EoTLm9B3ZvouRNBUDbYDr7evK/LRojU3A=",
+  "Hash": "82b/WYsHvghRrbLbxnUvk30ePNWUm1annicmt8XygOo=",
   "Source": "reactmvc",
   "BasePath": "_content/reactmvc",
   "Mode": "Default",
@@ -236,23 +236,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/scripts/config/webpack.config.js"
-    },
-    {
-      "Identity": "/Users/tony/_dev/specProj/ui-fun/reactmvc/wwwroot/scripts/src/index.js",
-      "SourceId": "reactmvc",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/tony/_dev/specProj/ui-fun/reactmvc/wwwroot/",
-      "BasePath": "_content/reactmvc",
-      "RelativePath": "scripts/src/index.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/scripts/src/index.js"
     },
     {
       "Identity": "/Users/tony/_dev/specProj/ui-fun/reactmvc/wwwroot/scripts/static/css/main.b01b3ba7.css",
