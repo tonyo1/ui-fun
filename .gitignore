@@ -118,3 +118,6 @@ monkey.api/appsettings.Development.json
 
 reactmvc/obj
 reactmvc/bin
+mvcreact2/bin
+mvcreact2/obj
+mvcreact2/js/_tsOBJ
