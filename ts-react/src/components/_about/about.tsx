@@ -1,31 +1,24 @@
-import { createSecretKey } from "crypto";
-import { type } from "os";
 import React from "react";
-import { useState } from "react";
-import { Tabs, Tab, Button } from "react-bootstrap";
-import { Routes, Route, Link } from "react-router-dom";
+import { Tabs, Tab, Button } from "react-bootstrap"; 
 import { useAppSelector } from "../../hooks";
 import IUser from "../../models/IUser";
 import AboutForm from "./about-form";
 
 import Page1 from "./page1";
 import Page2 from "./page2";
-
+import * as AppService from "../../services/appservice";
 
 const About = () => {
     const user: IUser = useAppSelector(state => state.userState.user);
-
+ 
     const [key, setKey] = React.useState<string>('');
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        alert("clicked");
-        // or you can send to backend
-    };
-
+    const [liveValue, setliveValue] = React.useState<string>('default');
+ 
     return (
         <>
-            <h2>About{key}</h2>
+            <h3>About {key}</h3>
+            <div>{liveValue} </div>
             <Tabs
                 defaultActiveKey=""
                 transition={true}
@@ -35,15 +28,12 @@ const About = () => {
                 onSelect={(k) => setKey(k + '')}
             >
                 <Tab eventKey="page1" title="page1">
-                    <Page1 />
+                    <Page1 />  
                 </Tab>
 
                 {user.loggedIn
                     ? (
-                        <Tab eventKey="page2" title="PAGE2">
-                            <button onClick={handleSubmit} type="submit" title="Empty" >
-                                click
-                            </button>
+                        <Tab eventKey="page2" title="PAGE2"> 
                             <Page2 />
                         </Tab>)
                     : ''}

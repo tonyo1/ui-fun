@@ -6,6 +6,7 @@ import { login, logout } from '../models/userSlice'
 
 
 const LoggedIn = () => {
+    // REDUX State
     const user: IUser = useAppSelector(state => state.userState.user)
     const dispatch = useAppDispatch()
 

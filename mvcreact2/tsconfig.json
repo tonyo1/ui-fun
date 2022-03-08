@@ -8,7 +8,6 @@
         "sourceMap": true,
         "target": "es6",
         "jsx": "react-jsx",
-        "forceConsistentCasingInFileNames": true,
         "esModuleInterop": true,
         "outDir": "./js/_tsOBJ"
     },

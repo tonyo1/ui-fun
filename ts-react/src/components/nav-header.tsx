@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Logo from '../logo.svg';
-import LoggedIn from './loggedin';
+import * as React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "../logo.svg";
+import LoggedIn from "./loggedin";
 
 const NavHeader = (props: any) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -15,13 +15,24 @@ const NavHeader = (props: any) => {
         <a className="navbar-brand" href="#">
           <img src={Logo} alt="Xcelvations Logo" height="35" />
         </a>
-        <button title="toggle" onClick={handleNavCollapse} type="button" data-target="#navbarCollapse" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <button
+          title="toggle"
+          onClick={handleNavCollapse}
+          type="button"
+          data-target="#navbarCollapse"
+          className="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarCollapse">
+        <div
+          className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+          id="navbarCollapse"
+        >
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <Link to="/" className="nav-link" >
+              <Link to="/" className="nav-link">
                 Home
               </Link>
             </li>
@@ -42,7 +53,7 @@ const NavHeader = (props: any) => {
         </div>{" "}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavHeader
+export default NavHeader;

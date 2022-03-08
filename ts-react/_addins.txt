@@ -1,0 +1,15 @@
+echo code --install-extension
+code --install-extension Angular.ng-template
+code --install-extension christian-kohler.path-intellisense
+code --install-extension eamodio.gitlens
+code --install-extension EditorConfig.EditorConfig
+code --install-extension esbenp.prettier-vscode
+code --install-extension formulahendry.auto-rename-tag   
+code --install-extension mgmcdermott.vscode-language-babel 
+code --install-extension ms-dotnettools.csharp
+code --install-extension ms-vscode.powershell
+code --install-extension ms-vscode.vscode-typescript-tslint-plugin
+code --install-extension msjsdiag.debugger-for-edge
+code --install-extension PKief.material-icon-theme
+code --install-extension rangav.vscode-thunder-client 
+tony@Starlyns-MacBook-Pro ts-react % 

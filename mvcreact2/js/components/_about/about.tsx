@@ -1,4 +1,4 @@
-import  "./about.css";
+
 import React from "react";
 import { Tabs, Tab, Button } from "react-bootstrap"; 
 import { useAppSelector } from "../../hooks";
@@ -25,8 +25,7 @@ const About = () => {
             <h2>About{key}</h2>
             <Tabs
                 defaultActiveKey=""
-                transition={true}
-                id="noanim-tab-example"
+                transition={true} 
                 className="mb-3"
                 activeKey={key}
                 onSelect={(k) => setKey(k + '')}

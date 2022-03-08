@@ -12,7 +12,7 @@ const NavHeader = (props: any) => {
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   return (
-    <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+    <Navbar className="navbar navbar-expand-sm bg-dark navbar-dark">
       <div className="container-fluid">
  
         <button title="toggle" onClick={handleNavCollapse} type="button" data-target="#navbarCollapse" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -27,7 +27,7 @@ const NavHeader = (props: any) => {
             </li>
 
             <li className="nav-item">
-              <Link to="/about" className="nav-link">
+              <Link to="app/about" className="nav-link">
                 about
               </Link>
             </li>
@@ -41,7 +41,7 @@ const NavHeader = (props: any) => {
           <LoggedIn />
         </div>{" "}
       </div>
-    </nav>
+    </Navbar>
   )
 }
 
