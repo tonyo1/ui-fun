@@ -9,7 +9,7 @@
         "target": "es6",
         "jsx": "react-jsx",
         "esModuleInterop": true,
-        "outDir": "./js/_tsOBJ"
+        "outDir": "./_tsOBJ"
     },
     "exclude": [
         "node_modules",
