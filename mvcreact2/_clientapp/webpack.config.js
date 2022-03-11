@@ -8,7 +8,7 @@ module.exports = {
   entry: "./js/index.tsx",
   devtool: "source-map",
   output: {
-    filename: "../reactapp.js",
+    filename: "../dist/reactapp.js",
   },
   resolve: { extensions: [".ts", ".tsx", ".js", ".css"] },
   module: {

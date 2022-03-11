@@ -1,5 +1,3 @@
-
-
 <mat-card *ngIf="isLoggedIn">
   <mat-card-title>User Info</mat-card-title>
   <mat-card-content>
@@ -7,14 +5,15 @@
       <div>{{ user.firstName }}</div>
       <div>{{ _authService.getExpiration() }}</div>
     </div>
-    <button
-  (click)="logout()"
-  mat-mini-fab
-  color="warn"
-  aria-label="Example icon button with a filter list icon"
->
-  LogOut
-</button>
+    <div>
+    <button (click)="logout()" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+      LogOut
+    </button>
+    </div>
+    <button (click)="putter()" >
+      put
+    </button>
+    {{putresult}}
   </mat-card-content>
 </mat-card>
 
@@ -23,24 +22,14 @@
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="login()">
       <p>
-        <mat-form-field   appearance="legacy" >
-          <input
-            type="text"
-            matInput
-            placeholder="Username"
-            formControlName="username"
-          />
+        <mat-form-field appearance="legacy">
+          <input type="text" matInput placeholder="Username" formControlName="username" />
         </mat-form-field>
       </p>
 
       <p>
-        <mat-form-field  appearance="legacy">
-          <input
-            type="password"
-            matInput
-            placeholder="Password"
-            formControlName="password"
-          />
+        <mat-form-field appearance="legacy">
+          <input type="password" matInput placeholder="Password" formControlName="password" />
         </mat-form-field>
       </p>
 
@@ -54,5 +43,3 @@
     </form>
   </mat-card-content>
 </mat-card>
-
-

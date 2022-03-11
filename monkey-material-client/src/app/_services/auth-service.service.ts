@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
     return this.http
@@ -23,8 +23,7 @@ export class AuthService {
             expiresIn: response['expires_at'],
             idToken: response['id_token'],
             appUser: response['appUser'],
-          }
-          );
+          });
         },
         (error) => {
           //Error callback
@@ -46,7 +45,6 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem('appUser', JSON.stringify(authResult.appUser));
     this.isLoginSubject.next(true);
-
   }
 
   logout() {
@@ -58,6 +56,10 @@ export class AuthService {
 
   hasToken() {
     return localStorage.getItem('id_token') != null;
+  }
+
+  getToken() {
+    return localStorage.getItem('id_token');
   }
 
   isLoggedIn(): Observable<boolean> {

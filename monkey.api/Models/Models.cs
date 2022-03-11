@@ -33,7 +33,6 @@ public class AppSettings
     public bool JWTValidateIssuer { get; set; }
     public string JWTValidIssuer { get; set; }
     public bool JWTValidateAudience { get; set; }
-
     public string JWTValidAudience { get; set; }
 
     public bool JWTRequireExpirationTime { get; set; }

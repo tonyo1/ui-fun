@@ -47,7 +47,7 @@ public class AppUserService : IAppUserService
         return _users;
     }
 
-    public AppUser GetById(int userId)
+    public AppUser? GetById(int userId)
     {
         return _users.FirstOrDefault(x => x.UserId == userId);
     }

@@ -18,6 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
 export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   user: AppUser = new AppUser();
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
+  putresult: string = '';
 
   constructor(public _authService: AuthService)  {
 
@@ -46,6 +48,25 @@ export class LoginComponent implements OnInit {
   logout():void {
     this._authService.logout();
   }
+  putter():void {
+
+
+      fetch('https://localhost:7296/AppUsers', {
+        method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer: ' + this._authService.getToken(),
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+       // body: JSON.stringify(data) // body data type must match "Content-Type" header
+      }).then(response => response.json())
+      .then(data => { this.putresult = data.toString()});
+    }
+
 
   @Input() error: string | null | undefined;
 

@@ -2,17 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using monkey.api.Models;
 using monkey.api.Services;
-using monkey.api.Repsoitories;
-namespace monkey.api.Controllers;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading.Tasks;
+using System; 
+using monkey.api.Helpers; 
 using Microsoft.AspNetCore.Cors;
-using Microsoft.IdentityModel.Tokens;
-using monkey.api.Helpers;
+namespace monkey.api.Controllers; 
 
+public class AppController: Controller
+{
 
+}
 public class MonkeyControllerBase : ControllerBase
 {
 

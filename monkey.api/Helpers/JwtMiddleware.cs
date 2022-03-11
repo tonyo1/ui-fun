@@ -36,7 +36,7 @@ public class JwtMiddleware
             new Claim("username", user.UserName + string.Empty),
             new Claim("userid", user.UserId.ToString()),
             new Claim(ClaimTypes.Email, user.Email + string.Empty),
-           
+            new Claim("name", user.FirstName + string.Empty),
         });
         foreach (var role in user.Roles)
         {
