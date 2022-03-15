@@ -16,7 +16,14 @@ var _services = _builder.Services;
     // Add services to the container.
 
     _services.AddControllers()
-        .AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never);
+        .AddJsonOptions(x => 
+        {
+            x.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never;
+       
+            x.JsonSerializerOptions.PropertyNamingPolicy = null; 
+            x.JsonSerializerOptions.WriteIndented = true;
+        });
+   
 
     _services.AddControllersWithViews();
     _services.AddLocalization();
@@ -107,6 +114,8 @@ if (_environment.IsDevelopment())
   
     app.UseRouting();
     app.UseCors();
+    app.UseAuthorization();
+    
     app.MapControllers()
         .RequireCors("Policy1");
 
@@ -119,11 +128,9 @@ if (_environment.IsDevelopment())
 
     //app.UseHttpsRedirection();
 
-    app.UseAuthorization();
+    
 
-}
-
-
+} 
 
 app.Run();
 
