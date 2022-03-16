@@ -59,6 +59,15 @@ public class AppUsersController : MonkeyControllerBase
         var user = (AppUser)HttpContext.Items["User"];
         return user;//new List<AppUser>(){ new AppUser() { LastName = "That worked" }};// _appUserService.GetAppUsers();
     }
+
+      [HttpDelete("{id}/guid/{guid}")]
+    public AppUser del2([FromBody] long id, int guid)
+    {
+        var user = (AppUser)HttpContext.Items["User"];
+        return user;//new List<AppUser>(){ new AppUser() { LastName = "That worked" }};// _appUserService.GetAppUsers();
+    }
+ 
+
     [HttpPost(Name = "Login")]
     [AllowAnonymous]
     public object Login([FromBody] AuthenticateRequest info)
