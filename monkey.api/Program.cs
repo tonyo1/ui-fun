@@ -1,12 +1,13 @@
 using monkey.api.Services;
 using monkey.api.Repsoitories;
- 
+
 using monkey.api.Models;
 using Microsoft.OpenApi.Models;
 using monkey.api;
+using Newtonsoft.Json;
 
 var _builder = WebApplication.CreateBuilder(args);
- 
+
 _builder.Logging.ClearProviders();
 _builder.Logging.AddConsole();
 
@@ -16,14 +17,14 @@ var _services = _builder.Services;
     // Add services to the container.
 
     _services.AddControllers()
-        .AddJsonOptions(x => 
+        .AddJsonOptions(x =>
         {
             x.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never;
-       
-            x.JsonSerializerOptions.PropertyNamingPolicy = null; 
+
+            x.JsonSerializerOptions.PropertyNamingPolicy = null;
             x.JsonSerializerOptions.WriteIndented = true;
         });
-   
+
 
     _services.AddControllersWithViews();
     _services.AddLocalization();
@@ -58,28 +59,28 @@ var _services = _builder.Services;
                          new string[] {}
                     }
                 });
-     });
-       _services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
+    });
+    _services.AddCors(options =>
+         {
+             options.AddDefaultPolicy(
+                 builder =>
+                 {
+                     builder.WithOrigins("http://localhost:4200",
+                                         "http://localhost:7296");
+                 });
+
+             options.AddPolicy("Policy1",
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:4200",
-                                            "http://localhost:7296");
+                                        "http://localhost:7296")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
                     });
-
-                    options.AddPolicy("Policy1",
-                        builder =>
-                        {
-                            builder.WithOrigins("http://localhost:4200",
-                                            "http://localhost:7296")
-                                .AllowAnyMethod()
-                                .AllowAnyHeader();
-                        });
-            });
+         });
 
 
-  
+
     _services.AddDbContext<MyContext>(ServiceLifetime.Scoped);
 
     //_services.AddScoped<IUserService, UserService>();
@@ -88,8 +89,36 @@ var _services = _builder.Services;
 }
 
 var app = _builder.Build();
+// sniffer, put this right after .Build(); for best results
+app.Use(async (context, next) =>
+{
+    var headers = JsonConvert.SerializeObject(context.Request.Headers,
+                Formatting.Indented,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+
+    var cookies = JsonConvert.SerializeObject(context.Request.Cookies,
+                Formatting.Indented,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+
+    var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+    if (token != null)
+    {
+        throw new Exception("i caught you");
+    }
+    await next(context);
+});
+
 IConfiguration _configuration = app.Configuration;
 IWebHostEnvironment _environment = app.Environment;
+
+app.UseMiddleware<JwtMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (_environment.IsDevelopment())
@@ -109,13 +138,13 @@ if (_environment.IsDevelopment())
 }
 
 {
-    app.UseMiddleware<JwtMiddleware>();
- 
-  
+
+
+
     app.UseRouting();
     app.UseCors();
     app.UseAuthorization();
-    
+
     app.MapControllers()
         .RequireCors("Policy1");
 
@@ -128,9 +157,9 @@ if (_environment.IsDevelopment())
 
     //app.UseHttpsRedirection();
 
-    
 
-} 
+
+}
 
 app.Run();
 

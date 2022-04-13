@@ -1,5 +1,4 @@
-export default interface IUser{
-    name: string;
-    loggedIn: boolean;
-  }
- 
+export default interface IUser {
+  name: string;
+  loggedIn: boolean;
+}
